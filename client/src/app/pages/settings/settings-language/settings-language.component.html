@@ -1,0 +1,9 @@
+<div class="rssr-form">
+  <div>
+    <label for="language">{{ ('LANGUAGE' | signalTranslate)() }}</label>
+    <p-dropdown rssrPreventVirtualKeyboard inputId="language" [options]="languageOptions()" [(ngModel)]="language" />
+  </div>
+  <div class="rssr-form-actions">
+    <p-button [label]="('SAVE' | signalTranslate)()" (onClick)="onSave()" />
+  </div>
+</div>

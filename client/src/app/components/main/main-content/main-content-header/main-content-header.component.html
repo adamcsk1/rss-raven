@@ -1,0 +1,36 @@
+<div class="flex justify-content-between align-items-center">
+  @if (isNewsPage()) {
+    <div class="flex align-items-center">
+      <p-button [text]="true" icon="pi pi-bars" [title]="('MENU' | signalTranslate)()" (onClick)="onOpenMenu()" />
+      <ng-container *ngTemplateOutlet="title"></ng-container>
+    </div>
+    @if (!isFavoritesPage() && !missingProxyConfig()) {
+      <div>
+        <span class="relative">
+          <p-button icon="pi pi-filter" class="unselectable" [rounded]="true" [text]="true" [title]="('FILTER' | signalTranslate)()" (onClick)="filterMenu.toggle($event)"></p-button>
+          @if (hasReadFilter()) {
+            <i class="pi pi-eye-slash text-xxs absolute filter-status-icon-position" [title]="('READ_ONLY' | signalTranslate)()"></i>
+          } @else if (hasUnreadFilter()) {
+            <i class="pi pi-eye text-xxs absolute filter-status-icon-position" [title]="('UNREAD_ONLY' | signalTranslate)()"></i>
+          }
+        </span>
+        <p-button icon="pi pi-ellipsis-v" class="unselectable" [rounded]="true" [text]="true" [title]="('NEWS_MENU' | signalTranslate)()" (onClick)="menu.toggle($event)"></p-button>
+      </div>
+    }
+  } @else {
+    <div class="flex align-items-center">
+      <p-button icon="pi pi-angle-left" class="unselectable" [rounded]="true" [text]="true" [title]="('BACK' | signalTranslate)()" (onClick)="onNavigateBack()"></p-button>
+      <ng-container *ngTemplateOutlet="title"></ng-container>
+    </div>
+  }
+</div>
+<p-tieredMenu #menu [model]="menuItems()" [popup]="true" />
+<p-tieredMenu #filterMenu [model]="filterMenuItems()" [popup]="true" />
+
+<ng-template #title>
+  @if (pageTitle(); as pageTitle) {
+    <h3 class="inline-block ml-3 mt-0 mb-0 text-overflow-ellipsis white-space-nowrap w-full overflow-hidden max-w-title" [title]="(pageTitle | signalTranslate)()">
+      {{ (pageTitle | signalTranslate)() }}
+    </h3>
+  }
+</ng-template>

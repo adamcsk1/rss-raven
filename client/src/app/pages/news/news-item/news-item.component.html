@@ -1,0 +1,42 @@
+@if (news(); as news) {
+  <div
+    [attr.aria-hidden]="true"
+    class="relative flex flex-column bg-surface-200 border-round h-full overflow-hidden border-200 border-1 border-solid cursor-pointer unselectable"
+    rssrLongPress
+    (mousedown)="onNavigate($event)"
+  >
+    <div class="absolute flex justify-content-between w-full h-8rem cursor-pointer button-container-shadow">
+      <p-button
+        icon="pi {{ news.favorite ? 'pi-star-fill' : 'pi-star' }}"
+        class="unselectable"
+        [rounded]="true"
+        [text]="true"
+        [title]="('TOGGLE_FAVORITE_STATUS' | signalTranslate)()"
+        (onClick)="onToggleFavorite()"
+      ></p-button>
+      <span>
+        <p-button icon="pi pi-share-alt" class="unselectable" [rounded]="true" [text]="true" [title]="('COPY_LINK' | signalTranslate)()" (onClick)="onCopyLink()"></p-button>
+        <p-button icon="pi pi-external-link" class="unselectable" [rounded]="true" [text]="true" [title]="('OPEN_NEWS_LINK' | signalTranslate)()" (onClick)="onNavigate()"></p-button>
+      </span>
+    </div>
+    <div class="w-full h-8rem overflow-hidden" (click)="onOpenDetail()">
+      @if (news.image && (news.image | imageAvailable)()) {
+        <img [src]="news.image" [alt]="news.title" [title]="news.title" class="w-full h-auto min-h-full" />
+      } @else {
+        <div class="w-full h-8rem flex justify-content-center align-items-center c-surface-500">
+          <i class="pi pi-image text-8xl"></i>
+        </div>
+      }
+    </div>
+    <div class="flex-1 p-2 flex flex-column gap-1 select-text" [ngClass]="{ 'opacity-50': news.read }">
+      <div class="flex justify-content-between text-xxs opacity-70 font-semibold">
+        <span class="white-space-nowrap text-overflow-ellipsis overflow-hidden max-w-feed-name" [innerHTML]="feedName()" (click)="onNavigateToFeed()"></span>
+        <span>{{ news.date | date: 'YYYY.MM.dd. HH:mm' }}</span>
+      </div>
+      <div class="text-sm h-8rem text-overflow-ellipsis-multi-line-6 line-height-content" (click)="onOpenDetail()">
+        <span class="block font-semibold mb-1">{{ news.title }}</span>
+        <span [innerHTML]="news.content"></span>
+      </div>
+    </div>
+  </div>
+}

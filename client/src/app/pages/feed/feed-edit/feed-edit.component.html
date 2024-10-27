@@ -1,0 +1,66 @@
+<form class="rssr-form" [formGroup]="formGroup">
+  <div>
+    <label for="feed-url">{{ ('URL' | signalTranslate)() }} <small>*</small></label>
+    <input type="text" id="feed-url" pInputText formControlName="url" />
+    <rssr-form-control-errors [control]="formGroup.controls.url" [controlName]="('URL' | signalTranslate)()">
+      <ng-template #customErrors let-errors="errors">
+        @if (errors['url']) {
+          <ng-container>{{ ('VALIDATOR_FEED_URL' | signalTranslate)() }}</ng-container>
+        }
+      </ng-template>
+    </rssr-form-control-errors>
+  </div>
+  <div>
+    <label for="feed-name">{{ ('TITLE' | signalTranslate)() }} <small>*</small></label>
+    <input type="text" id="feed-name" pInputText formControlName="name" />
+  </div>
+  <div>
+    <label for="feed-icon">{{ ('ICON' | signalTranslate)() }}</label>
+    <input type="text" id="feed-icon" pInputText formControlName="icon" />
+    <rssr-form-control-errors [control]="formGroup.controls.icon" [controlName]="('ICON' | signalTranslate)()">
+      <ng-template #customErrors let-errors="errors">
+        @if (errors['url']) {
+          <ng-container>{{ ('VALIDATOR_ICON_URL' | signalTranslate)() }}</ng-container>
+        }
+      </ng-template>
+    </rssr-form-control-errors>
+    @if (formGroup.value.icon) {
+      <img [src]="formGroup.value.icon" [alt]="formGroup.value.name" class="mt-4 border-round" />
+    }
+  </div>
+  <div>
+    <label for="type">{{ ('CATEGORY_TYPE' | signalTranslate)() }} <small>*</small></label>
+    <p-dropdown rssrPreventVirtualKeyboard inputId="type" [options]="categoryTypeOptions()" formControlName="categoryType" />
+  </div>
+  <div>
+    @if (formGroup.value.categoryType === 'new') {
+      <label for="category">{{ ('NEW_CATEGORY' | signalTranslate)() }} <small>*</small></label>
+      <input type="text" id="category" pInputText formControlName="newCategoryName" />
+    } @else {
+      <label for="category">{{ ('CATEGORY' | signalTranslate)() }} <small>*</small></label>
+      <p-dropdown rssrPreventVirtualKeyboard inputId="category" [options]="categories()" optionLabel="name" optionValue="id" formControlName="categoryId" />
+    }
+  </div>
+  <div class="flex-row">
+    <p-checkbox formControlName="hidden" [binary]="true" inputId="hidden" />
+    <label class="inline" for="hidden">{{ ('EXCLUDE_FEED_FROM_THE_LISTS' | signalTranslate)() }}</label>
+  </div>
+  <div>
+    <label for="last-sync">{{ ('LAST_SYNC' | signalTranslate)() }}</label>
+    <div id="last-sync">{{ formGroup.value.lastSync ? (formGroup.value.lastSync | date: 'YYYY.MM.dd. HH:mm') : '-' }}</div>
+  </div>
+  <div>
+    <label for="last-sync">{{ ('LAST_SYNC_ERROR' | signalTranslate)() }}</label>
+    <div id="last-sync">{{ (formGroup.value.lastError || '' | lastError | signalTranslate)() || '-' }}</div>
+  </div>
+  @if (formGroup.value.lastError) {
+    <div>
+      <label for="last-sync">{{ ('LAST_SYNC_ERROR_RAW' | signalTranslate)() }}</label>
+      <div id="last-sync">{{ formGroup.value.lastError }}</div>
+    </div>
+  }
+  <div class="rssr-form-actions">
+    <p-button [label]="('SAVE' | signalTranslate)()" [disabled]="formGroup.invalid" (onClick)="onSave()" />
+    <p-button [label]="('DELETE' | signalTranslate)()" severity="danger" [text]="true" (onClick)="onDelete()" />
+  </div>
+</form>

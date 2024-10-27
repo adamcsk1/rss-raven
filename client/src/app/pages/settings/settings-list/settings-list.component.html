@@ -1,0 +1,8 @@
+@for (settingsItems of settings() | keyvalue: keepSettingKeyOrder; track settingsItems.key) {
+  <h3 class="base-text pt-content pl-content pb-0" [ngClass]="{ 'mt-0': $index === 0 }">{{ settingsItems.key }}</h3>
+  <div class="rssr-list">
+    @for (item of settingsItems.value; track item.key) {
+      <p-button class="rssr-list-item unselectable" [label]="item.label" [text]="true" [disabled]="item | listItemDisabled" styleClass="w-full text-left" (onClick)="onClick(item)" />
+    }
+  </div>
+}

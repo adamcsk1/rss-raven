@@ -1,0 +1,18 @@
+{
+  "name": "rss-raven-electron",
+  "version": "1.0.0",
+  "description": "Electron application for Rss Raven",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "start:electron": "npm run start",
+    "eslint": "eslint ./index.js",
+    "eslint:fix": "eslint  ./index.js --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.0"
+  }
+}

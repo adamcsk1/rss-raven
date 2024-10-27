@@ -1,0 +1,24 @@
+<form class="rssr-form" [formGroup]="formGroup">
+  <div class="flex-row">
+    <p-checkbox formControlName="syncOnStart" [binary]="true" inputId="sync-on-start" />
+    <label class="inline" for="sync-on-start">{{ ('SYNC_AFTER_START' | signalTranslate)() }}</label>
+  </div>
+  <div class="flex-row">
+    <p-checkbox formControlName="scrollMarkAsRead" [binary]="true" inputId="scroll-mark-as-read" />
+    <label class="inline" for="scroll-mark-as-read">{{ ('SCROLL_MARK_AS_READ' | signalTranslate)() }}</label>
+  </div>
+  <div>
+    <label for="maximum-feed-news">{{ ('MAX_RETAINED_ITEMS_PER_FEED' | signalTranslate)() }}</label>
+    <p-dropdown rssrPreventVirtualKeyboard inputId="maximum-feed-news" [options]="maximumFeedNewsOptions()" formControlName="maximumNewsPerFeed" />
+  </div>
+  @if (formGroup.value.maximumNewsPerFeed === 0) {
+    <div class="c-red-600">{{ ('MESSAGE_UNLIMITED_NEWS' | signalTranslate)() }}</div>
+  }
+  <div>
+    <label for="background-sync">{{ ((showBackgroundSync ? 'BACKGROUND_SYNC' : 'PERIODICAL_SYNC') | signalTranslate)() }}</label>
+    <p-dropdown rssrPreventVirtualKeyboard inputId="background-sync" [options]="backgroundSyncOptions()" formControlName="backgroundSyncTime" />
+  </div>
+  <div class="rssr-form-actions">
+    <p-button [label]="('SAVE' | signalTranslate)()" (onClick)="onSave()" />
+  </div>
+</form>

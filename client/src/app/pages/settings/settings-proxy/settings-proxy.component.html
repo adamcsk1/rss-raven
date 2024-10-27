@@ -1,0 +1,41 @@
+<form class="rssr-form" [formGroup]="formGroup">
+  <div>
+    <label for="base-path">{{ ('PROXY_SERVER_URL' | signalTranslate)() }} <small>*</small></label>
+    <input type="text" id="base-path" pInputText formControlName="basePath" />
+    <rssr-form-control-errors [control]="formGroup.controls.basePath" [controlName]="('PROXY_SERVER_URL' | signalTranslate)()">
+      <ng-template #customErrors let-errors="errors">
+        @if (errors['endsWithSlash']) {
+          <ng-container>{{ ('VALIDATOR_PROXY_SERVER_URL_END' | signalTranslate)() }}</ng-container>
+        }
+        @if (errors['url']) {
+          <ng-container>{{ ('VALIDATOR_PROXY_SERVER_URL' | signalTranslate)() }}</ng-container>
+        }
+      </ng-template>
+    </rssr-form-control-errors>
+  </div>
+  <h4 class="mb-0 mt-0">{{ ('CREDENTIALS' | signalTranslate)() }}</h4>
+  <div>
+    <label for="token">{{ ('TOKEN' | signalTranslate)() }}</label>
+    <input type="text" id="token" pInputText formControlName="token" />
+  </div>
+  <div class="rssr-form-actions">
+    <p-button [label]="('SAVE' | signalTranslate)()" [disabled]="formGroup.invalid" (onClick)="onSave()" />
+    <p-button [label]="('CHECK_STATUS' | signalTranslate)()" [disabled]="formGroup.invalid" (onClick)="onCheckStatus()" />
+  </div>
+</form>
+<div class="flex justify-content-end mt-3">
+  {{ ('STATUS' | signalTranslate)() }}: {{ (proxyStatus() | signalTranslate)() }}
+  <span class="ml-1">
+    @switch (proxyStatus()) {
+      @case ('UNKNOWN') {
+        <p-badge severity="info" />
+      }
+      @case ('ONLINE') {
+        <p-badge severity="success" />
+      }
+      @case ('OFFLINE') {
+        <p-badge severity="danger" />
+      }
+    }
+  </span>
+</div>

@@ -1,0 +1,14 @@
+<small class="c-red-600">
+  @if (control(); as control) {
+    @if (control.touched) {
+      @if (control.errors; as errors) {
+        @if (errors['required']) {
+          <ng-container>{{ ('VALIDATOR_IS_REQUIRED' | signalTranslate: { name: controlName() })() }}</ng-container>
+        }
+        @if (customErrorsTemplateRef(); as customErrorsTemplateRef) {
+          <ng-container *ngTemplateOutlet="customErrorsTemplateRef; context: { errors }"></ng-container>
+        }
+      }
+    }
+  }
+</small>

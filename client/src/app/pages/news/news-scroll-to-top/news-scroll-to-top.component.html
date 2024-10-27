@@ -1,0 +1,5 @@
+@if (newNewsCount()) {
+  <p-button [@scaleAnimation] [rounded]="true" [label]="('NEW_ITEMS' | signalTranslate: { count: newNewsCount() })()" (onClick)="onLoad()" />
+} @else if (showScrollTopButton()) {
+  <p-button [@scaleAnimation] icon="pi pi-angle-up" [rounded]="true" [title]="('SCROLL_TO_TOP' | signalTranslate)()" (onClick)="onClick()" />
+}

@@ -1,0 +1,11 @@
+.close-button {
+  margin-left: -1rem;
+}
+
+.h-content {
+  max-height: calc(100vh - 295px);
+
+  @media (width <= 1024px) {
+    max-height: calc(100vh - 185px);
+  }
+}

@@ -1,0 +1,49 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "@appConfig": ["./src/app/app.config.ts"],
+      "@appRoutes": ["./src/app/app.routes.ts"],
+      "@appConstant": ["./src/app/app.constant.ts"],
+      "@services/*": ["./src/app/services/*"],
+      "@pages/*": ["./src/app/pages/*"],
+      "@interfaces/*": ["./src/app/interfaces/*"],
+      "@store/*": ["./src/app/store/*"],
+      "@utils/*": ["./src/app/utils/*"],
+      "@components/*": ["./src/app/components/*"],
+      "@pipes/*": ["./src/app/pipes/*"],
+      "@stores/*": ["./src/app/stores/*"],
+      "@directives/*": ["./src/app/directives/*"],
+      "@animations/*": ["./src/app/animations/*"],
+      "@validators/*": ["./src/app/validators/*"],
+      "@workers/*": ["./src/app/workers/*"],
+      "@guards/*": ["./src/app/guards/*"],
+      "@environments/*": ["./src/environments/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

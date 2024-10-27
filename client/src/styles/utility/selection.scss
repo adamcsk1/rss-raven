@@ -1,0 +1,8 @@
+.unselectable {
+  user-select: none;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+
+  &::selection {
+    background-color: transparent;
+  }
+}

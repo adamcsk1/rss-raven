@@ -1,0 +1,33 @@
+{
+  "name": "rssr-raven-monorepo",
+  "version": "1.0.0",
+  "description": "Rss Raven monorepo",
+  "workspaces": [
+    "client",
+    "electron",
+    "proxy"
+  ],
+  "scripts": {
+    "start": "npx lerna run start --scope=rss-raven-client --scope=rss-raven-proxy --stream",
+    "start:electron": " npx lerna run build:electron --scope=rss-raven-client --stream && npx lerna run start:electron --scope=rss-raven-electron --stream",
+    "build:android": "npx lerna run build:android --scope=rss-raven-client --stream",
+    "build:browser": "",
+    "build:electron:windows": "",
+    "stylelint": "npx lerna run stylelint --scope=rss-raven-client",
+    "stylelint:fix": "npx lerna run stylelint:fix --scope=rss-raven-client",
+    "eslint": "npx lerna run eslint --scope=rss-raven-client --scope=rss-raven-proxy --scope=rss-raven-electron",
+    "eslint:fix": "npx lerna run eslint:fix --scope=rss-raven-client --scope=rss-raven-proxy --scope=rss-raven-electron",
+    "prepare": "husky"
+  },
+  "author": "adamcsk1",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "husky": "^9.1.6",
+    "lerna": "^8.1.9"
+  }
+}

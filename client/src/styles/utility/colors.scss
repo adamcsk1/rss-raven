@@ -1,0 +1,31 @@
+.bg {
+  &-surface-0 {
+    background-color: var(--surface-0);
+  }
+
+  &-surface-100 {
+    background-color: var(--surface-100);
+  }
+
+  &-surface-200 {
+    background-color: var(--surface-200);
+  }
+
+  &-red-600 {
+    background-color: var(--red-600);
+  }
+}
+
+.c {
+  &-primary {
+    color: var(--primary-color);
+  }
+
+  &-red-600 {
+    color: var(--red-600);
+  }
+
+  &-surface-500 {
+    color: var(--surface-500);
+  }
+}

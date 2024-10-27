@@ -1,0 +1,30 @@
+:root {
+  --rssr-list-item-height: 40px;
+}
+
+.rssr-list {
+  background-color: var(--surface-200);
+  border-radius: var(--app-border-radius);
+  margin-bottom: 1rem;
+
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--content-padding) 0;
+    height: var(--rssr-list-item-height);
+    color: var(--text-color);
+
+    button.p-button {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    button .p-button-label {
+      color: var(--text-color);
+      font-weight: normal;
+    }
+  }
+}

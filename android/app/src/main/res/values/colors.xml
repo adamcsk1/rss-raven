@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fafafa</color>
+    <color name="colorAccent">#000</color>
+    <color name="colorPrimaryVariant">#000</color>
+    <color name="colorBackground">#fafafa</color>
+    <color name="colorButtonBackground">#262f3d</color>
+</resources>

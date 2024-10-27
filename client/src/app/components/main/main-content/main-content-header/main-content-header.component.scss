@@ -1,0 +1,8 @@
+.max-w-title {
+  max-width: calc(100vw - 45px - 45px - 45px - 36px); // ? width - menu icon - filter icon - options icon - padding
+}
+
+.filter-status-icon-position {
+  right: 0.5rem;
+  bottom: 0.25rem;
+}

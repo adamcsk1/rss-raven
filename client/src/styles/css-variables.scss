@@ -1,0 +1,6 @@
+:root {
+  --app-border-radius: 6px;
+  --app-header-height: 50px;
+  --app-max-scroll-height: calc(100vh - var(--app-header-height));
+  --content-max-width: min(95vw, 30rem);
+}

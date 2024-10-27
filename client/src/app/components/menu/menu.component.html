@@ -1,0 +1,58 @@
+<h3>{{ ('MENU' | signalTranslate)() }}</h3>
+<div class="rssr-list">
+  <span class="flex align-items-center" [routerLink]="['/news']">
+    <p-button class="rssr-list-item unselectable" [label]="('ALL_FEED' | signalTranslate)()" icon="pi pi-bars" [text]="true" />
+    @if (allFeedUnreadCount(); as allFeedUnreadCount) {
+      <p-badge [value]="allFeedUnreadCount" class="ml-auto mr-2" />
+    }
+  </span>
+  <p-button class="rssr-list-item unselectable" [label]="('FAVORITES' | signalTranslate)()" icon="pi pi-star" [text]="true" [routerLink]="['/news', 'favorites']" />
+  <p-button
+    class="rssr-list-item unselectable"
+    [label]="('FOLLOW_FEED' | signalTranslate)()"
+    icon="pi pi-plus-circle"
+    [text]="true"
+    [routerLink]="['/feed', 'add']"
+    [disabled]="missingProxyConfig() || syncRunning()"
+  />
+  <p-button class="rssr-list-item unselectable" [label]="('SETTINGS' | signalTranslate)()" icon="pi pi-cog" [text]="true" [routerLink]="['/settings', 'list']" />
+</div>
+<h3 class="mb-0">Feeds</h3>
+@for (menuItem of menuItems(); track menuItem.category.id) {
+  <h4
+    class="white-space-nowrap text-overflow-ellipsis overflow-hidden cursor-pointer"
+    [title]="menuItem.category.name"
+    [routerLink]="['/news', 'category', menuItem.category.id]"
+    [style.max-width.px]="categoryMaxWidth()"
+    [ngClass]="{ 'opacity-50': menuItem.category.hidden }"
+  >
+    {{ menuItem.category.name }}
+  </h4>
+  <div class="rssr-list" #rssrList>
+    @for (feed of menuItem.feeds; track feed.id) {
+      <div class="flex align-items-center cursor-pointer" [routerLink]="['/news', 'feed', feed.id]">
+        <div class="rssr-list-item unselectable" [title]="feed.name" [ngClass]="{ 'opacity-50': feed.hidden }">
+          @if (feed.icon && (feed.icon | imageAvailable)()) {
+            <span [style.background-image]="'url(' + (feed.icon | encodeUri) + ')'" [title]="feed.name" class="bg-no-repeat bg-cover border-circle w-1rem h-1rem ml-2 mr-2"></span>
+          } @else {
+            <span [title]="feed.name" class="text-center vertical-align-middle border-circle w-1rem h-1rem ml-2 mr-2 text-xs" [ngStyle]="{ backgroundColor: feed.name | colorByFirstChar }">
+              {{ feed.name | firstChar }}
+            </span>
+          }
+          <span class="white-space-nowrap text-overflow-ellipsis overflow-hidden" [style.max-width.px]="rssrListItemMaxWidth()">{{ feed.name }}</span>
+        </div>
+        @if (feed.lastError) {
+          <i class="pi pi-exclamation-circle border-circle ml-auto mr-2 bg-red-600" [pTooltip]="(feed.lastError | lastError | signalTranslate)()"></i>
+        } @else {
+          @if (feed.id | unreadCountByFeed | async; as count) {
+            @if (count !== '0') {
+              <p-badge [value]="count" class="ml-auto mr-2" />
+            }
+          }
+        }
+      </div>
+    }
+  </div>
+} @empty {
+  {{ ('MESSAGE_EMPTY_FEED_LIST' | signalTranslate)() }}
+}

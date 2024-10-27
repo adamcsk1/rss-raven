@@ -1,0 +1,18 @@
+@if (!blocked()) {
+  <p-sidebar [(visible)]="showSidebar">
+    <ng-template pTemplate="header">
+      <img src="images/logo.png" [alt]="('APP_NAME' | signalTranslate)()" class="w-2rem mr-3" rssrLogoAutoContrast /> {{ ('APP_NAME' | signalTranslate)() }}
+    </ng-template>
+    <rssr-menu></rssr-menu>
+  </p-sidebar>
+  <rssr-main-content-header class="p-1" (openMenu)="onOpenMenu()"></rssr-main-content-header>
+}
+<rssr-scroll-container class="flex">
+  <router-outlet></router-outlet>
+</rssr-scroll-container>
+<rssr-spinner-loading />
+<rssr-blocker-loading />
+<p-toast key="default" position="top-center" [life]="5000" [preventOpenDuplicates]="true" />
+<p-toast key="error" position="top-center" [life]="10000" [preventOpenDuplicates]="true" />
+<p-confirmDialog [closable]="false"></p-confirmDialog>
+<rssr-search></rssr-search>

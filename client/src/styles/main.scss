@@ -1,0 +1,16 @@
+html {
+  font-size: 18px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h3 {
+  color: var(--surface-700);
+}
+
+.logo-light-mask {
+  filter: brightness(0) invert(1);
+}

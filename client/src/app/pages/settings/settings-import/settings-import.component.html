@@ -1,0 +1,12 @@
+<div class="rssr-form">
+  @if (selectedFileName) {
+    <div>{{ ('FILE' | signalTranslate)() }}: {{ selectedFileName }}</div>
+  } @else {
+    <div>{{ ('MESSAGE_SELECT_SETTINGS_FILE' | signalTranslate)() }}</div>
+  }
+  <div>{{ ('MESSAGE_SETTINGS_IMPORT' | signalTranslate)() }}</div>
+  <div class="rssr-form-actions">
+    <p-fileUpload mode="basic" [chooseLabel]="('CHOOSE' | signalTranslate)()" chooseIcon="pi pi-upload" [auto]="true" [customUpload]="true" (uploadHandler)="onChoose($event)" />
+    <p-button [label]="('IMPORT' | signalTranslate)()" [disabled]="!enableImport" (onClick)="onImport()" />
+  </div>
+</div>

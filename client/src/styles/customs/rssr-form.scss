@@ -1,0 +1,33 @@
+.rssr-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-padding);
+
+  label {
+    display: block;
+    color: var(--text-color-secondary);
+
+    small {
+      color: var(--red-600);
+    }
+  }
+
+  & > div:not(.rssr-form-actions) {
+    display: flex;
+    flex-direction: column;
+
+    p-dropdown,
+    .p-dropdown {
+      width: 100%;
+    }
+
+    p-checkbox {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}

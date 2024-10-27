@@ -1,0 +1,8 @@
+<div class="flex flex-column align-items-center opacity-60 fixed top-50 left-50">
+  @if (icon(); as icon) {
+    <i class="pi pi-{{ icon }} text-8xl"></i>
+  } @else {
+    <img src="images/logo.png" [alt]="('APP_NAME' | signalTranslate)()" class="h-10rem w-auto" rssrLogoAutoContrast />
+  }
+  <span class="mt-content text-center unselectable mt-2"><ng-content></ng-content></span>
+</div>

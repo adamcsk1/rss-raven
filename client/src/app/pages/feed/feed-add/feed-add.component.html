@@ -1,0 +1,29 @@
+<form class="rssr-form" [formGroup]="formGroup">
+  <div>
+    <label for="feed-url">{{ ('FEED_URL' | signalTranslate)() }} <small>*</small></label>
+    <input type="text" id="feed-url" pInputText formControlName="url" />
+    <rssr-form-control-errors [control]="formGroup.controls.url" [controlName]="('FEED_URL' | signalTranslate)()">
+      <ng-template #customErrors let-errors="errors">
+        @if (errors['url']) {
+          <ng-container>{{ ('VALIDATOR_FEED_URL' | signalTranslate)() }}</ng-container>
+        }
+      </ng-template>
+    </rssr-form-control-errors>
+  </div>
+  <div>
+    <label for="category-type">{{ ('CATEGORY_TYPE' | signalTranslate)() }} <small>*</small></label>
+    <p-dropdown rssrPreventVirtualKeyboard inputId="category-type" [options]="categoryTypeOptions()" formControlName="categoryType" />
+  </div>
+  <div>
+    @if (formGroup.value.categoryType === 'new') {
+      <label for="category">{{ ('NEW_CATEGORY' | signalTranslate)() }} <small>*</small></label>
+      <input type="text" id="category" pInputText formControlName="newCategoryName" />
+    } @else {
+      <label for="category">{{ ('CATEGORY' | signalTranslate)() }} <small>*</small></label>
+      <p-dropdown rssrPreventVirtualKeyboard inputId="category" [options]="categories()" optionLabel="name" optionValue="id" formControlName="existingCategoryId" />
+    }
+  </div>
+  <div class="rssr-form-actions">
+    <p-button [label]="('FOLLOW' | signalTranslate)()" [disabled]="formGroup.invalid" (onClick)="onAdd()" />
+  </div>
+</form>

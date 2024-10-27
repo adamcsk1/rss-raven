@@ -1,0 +1,27 @@
+<div class="rssr-form">
+  <div>{{ ('MESSAGE_CLEANUP' | signalTranslate)() }}</div>
+  <div>{{ ('LAST_CLEANUP' | signalTranslate)() }}: {{ lastCleanupRun() ? (lastCleanupRun() | date: 'YYYY.MM.dd. HH:mm') : '-' }}</div>
+  <div>{{ ('MAX_RETAINED_ITEMS_PER_FEED' | signalTranslate)() }}: {{ !unlimitedItem() ? maximumRetainedItemsPerFeed() : ('UNLIMITED' | signalTranslate)() }}</div>
+  <div class="rssr-form-actions">
+    <p-button [label]="('CLEANUP_ALL_FEED' | signalTranslate)()" [disabled]="unlimitedItem()" (onClick)="onCleanup()" />
+  </div>
+</div>
+
+<h2 class="base-text pt-content pl-content pb-0">{{ ('NEWS_COUNTS' | signalTranslate)() }}</h2>
+@for (collection of feedsCollectByCategories(); track collection.category.id) {
+  <h3 class="base-text pt-content pl-content pb-0">{{ collection.category.name }}</h3>
+  <div class="rssr-list">
+    @for (feed of collection.feeds; track feed.id) {
+      <div
+        [attr.aria-hidden]="true"
+        class="rssr-list-item unselectable w-full h-auto text-left p-2 pl-3 pr-3"
+        [ngClass]="{ 'cursor-auto': unlimitedItem() }"
+        (click)="onCleanupByFeedId(feed.id, feed.name)"
+        (keyup)="onCleanupByFeedId(feed.id, feed.name)"
+      >
+        <span> {{ feed.name }} </span>
+        <span>{{ feed.id | countByFeed | async }}</span>
+      </div>
+    }
+  </div>
+}

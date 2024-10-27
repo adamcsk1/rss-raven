@@ -1,0 +1,23 @@
+<p-scroller #scroller [items]="news()" [itemSize]="360" [autoSize]="true" [numToleratedItems]="20" [scrollHeight]="scrollHeight()" [trackBy]="trackBy">
+  <ng-template pTemplate="item" let-item let-options="options">
+    @defer (prefetch on idle) {
+      <rssr-news-item class="block" [news]="item" class="max-w-content mx-auto"></rssr-news-item>
+    } @placeholder {
+      <p-skeleton class="block cursor-default p-3 max-w-content mx-auto" width="100%" height="100%" borderRadius="6px" />
+    }
+  </ng-template>
+</p-scroller>
+
+@if (newsStatus(); as newsStatus) {
+  @if (newsStatus !== 'NEWS') {
+    <rssr-empty-list [icon]="newsStatus === 'EMPTY' ? 'inbox' : ''">
+      @if (newsStatus === 'NULL') {
+        {{ ('APP_NAME' | signalTranslate)() }}
+      } @else if (newsStatus === 'EMPTY') {
+        {{ ('MESSAGE_EMPTY_LIST' | signalTranslate)() }}
+      }
+    </rssr-empty-list>
+  } @else {
+    <rssr-news-scroll-to-top [target]="scroller" />
+  }
+}

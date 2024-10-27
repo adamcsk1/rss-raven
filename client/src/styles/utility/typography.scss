@@ -1,0 +1,18 @@
+.text {
+  &-xxs {
+    font-size: 0.5rem;
+  }
+}
+
+%text-overflow-ellipsis-multi-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-overflow-ellipsis-multi-line {
+  &-6 {
+    @extend %text-overflow-ellipsis-multi-line;
+    -webkit-line-clamp: 6;
+  }
+}

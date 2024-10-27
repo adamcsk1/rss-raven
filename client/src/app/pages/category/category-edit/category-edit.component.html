@@ -1,0 +1,14 @@
+<form class="rssr-form" [formGroup]="formGroup">
+  <div>
+    <label for="category-name">{{ ('NAME' | signalTranslate)() }} <small>*</small></label>
+    <input type="text" id="category-name" pInputText formControlName="name" />
+  </div>
+  <div class="flex-row">
+    <p-checkbox formControlName="hidden" [binary]="true" inputId="hidden" />
+    <label class="inline" for="hidden">{{ ('EXCLUDE_CATEGORY_FROM_THE_LISTS' | signalTranslate)() }}</label>
+  </div>
+  <div class="rssr-form-actions">
+    <p-button [label]="('SAVE' | signalTranslate)()" [disabled]="formGroup.invalid" (onClick)="onSave()" />
+    <p-button [label]="('DELETE' | signalTranslate)()" severity="danger" [text]="true" (onClick)="onDelete()" />
+  </div>
+</form>

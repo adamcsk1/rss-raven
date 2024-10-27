@@ -1,0 +1,15 @@
+:host {
+  padding: 1rem;
+}
+
+.line-height-content {
+  line-height: 1.45;
+}
+
+.max-w-feed-name {
+  max-width: calc(var(--content-max-width) - 150px);
+}
+
+.button-container-shadow {
+  box-shadow: inset 1px 40px 30px -15px #000000e0;
+}

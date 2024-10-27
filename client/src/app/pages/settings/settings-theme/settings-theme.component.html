@@ -1,0 +1,9 @@
+<div class="rssr-form">
+  <div>
+    <label for="theme">{{ ('THEME' | signalTranslate)() }}</label>
+    <p-dropdown rssrPreventVirtualKeyboard inputId="theme" [options]="themeOptions()" [(ngModel)]="theme" />
+  </div>
+  <div class="rssr-form-actions">
+    <p-button [label]="('SAVE' | signalTranslate)()" (onClick)="onSave()" />
+  </div>
+</div>

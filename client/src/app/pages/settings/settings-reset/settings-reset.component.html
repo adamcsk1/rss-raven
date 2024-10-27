@@ -1,0 +1,9 @@
+<h3 class="base-text pt-content pl-content pb-0">{{ ('APP_DATA_RESET_OPTIONS' | signalTranslate)() }}</h3>
+<div class="rssr-list">
+  <p-button class="rssr-list-item unselectable" [label]="('RESET_NEWS_DATA' | signalTranslate)()" [text]="true" styleClass="w-full text-left" (onClick)="onResetNews()" />
+  <p-button class="rssr-list-item unselectable" [label]="('RESET_FEED_AND_CATEGORY_DATA' | signalTranslate)()" [text]="true" styleClass="w-full text-left" (onClick)="onResetFeeds()" />
+</div>
+<h3 class="base-text pt-content pl-content pb-0">{{ ('APP_RESET_OPTIONS' | signalTranslate)() }}</h3>
+<div class="rssr-list">
+  <p-button class="rssr-list-item unselectable" [label]="('RESET_APPLICATION_DATA' | signalTranslate)()" [text]="true" styleClass="w-full text-left" (onClick)="onReset()" />
+</div>

@@ -1,0 +1,32 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "eslint.useFlatConfig": true,
+  "cSpell.words": [
+    "adamcsk",
+    "blockui",
+    "ciphertext",
+    "confirmdialog",
+    "Dexie",
+    "dynamicdialog",
+    "favicons",
+    "fileupload",
+    "inputmode",
+    "inputtext",
+    "keyval",
+    "localstorage",
+    "longpress",
+    "primeflex",
+    "primeicons",
+    "primeng",
+    "rssr",
+    "rssraven",
+    "rxdb",
+    "tieredmenu",
+    "unselectable"
+  ]
+}

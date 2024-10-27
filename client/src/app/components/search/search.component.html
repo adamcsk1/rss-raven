@@ -1,0 +1,11 @@
+@if (show()) {
+  <div [@searchSlideInFromTopAnimation] class="fixed top-0 left-50 z-1 container white-space-nowrap">
+    <p-inputGroup>
+      <!-- eslint-disable-next-line @angular-eslint/template/no-autofocus -->
+      <input type="text" pInputText [placeholder]="('TYPE_TO_SEARCH' | signalTranslate)()" pAutoFocus [autofocus]="true" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChanged()" />
+      <p-inputGroupAddon>
+        <i class="pi pi-times cursor-pointer vertical-align-middle" [attr.aria-hidden]="true" [title]="('CLOSE' | signalTranslate)()" (click)="onClose()" (keyup)="onClose()"></i>
+      </p-inputGroupAddon>
+    </p-inputGroup>
+  </div>
+}

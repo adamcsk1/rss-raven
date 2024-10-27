@@ -1,0 +1,28 @@
+<div class="flex flex-column gap-4">
+  <div>
+    <div class="flex justify-content-between align-items-center mt-1">
+      <p-button icon="pi pi-angle-left" class="unselectable close-button" [rounded]="true" [text]="true" [title]="('CLOSE' | signalTranslate)()" (onClick)="onClose()"></p-button>
+      <div class="flex align-items-center">
+        <p-button
+          icon="pi {{ news.favorite ? 'pi-star-fill' : 'pi-star' }}"
+          class="unselectable"
+          [rounded]="true"
+          [text]="true"
+          [title]="('TOGGLE_FAVORITE_STATUS' | signalTranslate)()"
+          (onClick)="onToggleFavorite()"
+        ></p-button>
+        <p-button icon="pi pi-share-alt" class="unselectable" [rounded]="true" [text]="true" [title]="('COPY_LINK' | signalTranslate)()" (onClick)="onCopyLink()"></p-button>
+        <p-button icon="pi pi-external-link" class="unselectable" [rounded]="true" [text]="true" [title]="('OPEN_NEWS_LINK' | signalTranslate)()" (onClick)="onOpen()"></p-button>
+      </div>
+    </div>
+    <div>
+      <h4 #title class="mb-0" [innerHTML]="news.title"></h4>
+    </div>
+  </div>
+  <div class="overflow-y-auto pl-1 pr-1 h-content">
+    @if (news.image && (news.image | imageAvailable)()) {
+      <img [src]="news.image" [title]="news.title" [alt]="news.title" class="border-round mb-4" />
+    }
+    <div [innerHTML]="news.content"></div>
+  </div>
+</div>
